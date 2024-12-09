@@ -1,5 +1,3 @@
-# nader el top
+#nader el top
 #ghaly arrived
-main.py
-ghaly msh simple
-matektebsh comment law 3awzo yesmaa3
+#push al branch ya 3obt 😭
