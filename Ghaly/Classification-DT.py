@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -39,20 +38,14 @@ y = data['High_Achiever']
 # Step 4: Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Step 5: Scale the features
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+# Step 5: Train the Decision Tree model
+tree_model = DecisionTreeClassifier(criterion='gini', max_depth=4, random_state=42)
+tree_model.fit(X_train, y_train)
 
-# Step 6: Train the KNN model
-k = 5  # Choose the number of neighbors
-knn_model = KNeighborsClassifier(n_neighbors=k)
-knn_model.fit(X_train, y_train)
+# Step 6: Make predictions
+y_pred = tree_model.predict(X_test)
 
-# Step 7: Make predictions
-y_pred = knn_model.predict(X_test)
-
-# Step 8: Evaluate the model
+# Step 7: Evaluate the model
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))
 
@@ -63,4 +56,10 @@ sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Not High Achiev
 plt.title('Confusion Matrix')
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
+plt.show()
+
+# Step 8: Visualize the Decision Tree
+plt.figure(figsize=(16, 10))
+plot_tree(tree_model, feature_names=X.columns, class_names=['Not High Achiever', 'High Achiever'], filled=True, rounded=True)
+plt.title("Decision Tree Visualization")
 plt.show()

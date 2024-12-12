@@ -7,7 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load the dataset
-data_path = 'D:/BUE- ICS/Fourth year/Semester one/Data Mining/Project/ahh ah/destination_export.csv'
+data_path = 'D:/BUE- ICS/Fourth year/Semester one/Data Mining/Project/ahh ah/cleaned_data.csv'
 data = pd.read_csv(data_path)
 
 # Step 1: Categorize parental education
