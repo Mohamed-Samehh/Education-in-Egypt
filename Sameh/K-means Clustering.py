@@ -22,7 +22,7 @@ pca = PCA(n_components=2)
 data_pca = pca.fit_transform(data_scaled)
 
 # Apply K-Means clustering with a predefined number of clusters
-kmeans = KMeans(n_clusters=4, random_state=42)
+kmeans = KMeans(n_clusters=2, random_state=42)
 kmeans.fit(data_pca)
 
 # Get the cluster labels and centroids
@@ -31,7 +31,7 @@ centroids = kmeans.cluster_centers_
 
 # Visualize the clustering in 2D (using PCA-reduced data)
 plt.figure(figsize=(10, 6))
-for cluster in range(4):
+for cluster in range(2):
     cluster_points = data_pca[labels == cluster]
     plt.scatter(cluster_points[:, 0], cluster_points[:, 1], label=f'Cluster {cluster + 1}')
 
